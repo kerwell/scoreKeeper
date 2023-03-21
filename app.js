@@ -3,10 +3,11 @@ const p2Button = document.querySelector('#p2Button')
 const p1Display = document.querySelector('#p1Display');
 const p2Display = document.querySelector('#p2Display');
 const resetButton = document.querySelector('#resetBtn')
+const winningScoreSelect = document.querySelector('#playTo')
 
 let p1Score = 0;
 let p2Score = 0;
-let winningScore = 5;
+let winningScore = 3;
 let isGameOver = false;
 
 p1Button.addEventListener('click',()=>{
@@ -38,8 +39,8 @@ p2Button.addEventListener('click',()=>{
     
 })
 
-resetButton.addEventListener('click',()=>{
-    console.log('clicked reset btn')
+const reset = ()=>{
+    // console.log('clicked reset btn')
     if(!isGameOver || isGameOver === true){
         p1Score = 0;
         p2Score = 0;
@@ -47,4 +48,14 @@ resetButton.addEventListener('click',()=>{
         p2Display.textContent = p2Score
     }
     isGameOver = false;
+}
+resetButton.addEventListener('click', reset)
+
+winningScoreSelect.addEventListener('change',function (){
+    console.log('changed winningScoreSelect btn')
+    winningScore = parseInt(this.value);
+    //we need to use 'parseInt()' method to make a string into a number.
+    //bc the number is locked behind 'this.value' as a string, where 'this' is the 
+    //'winningScoreSelect' object.
+    reset();
 })
