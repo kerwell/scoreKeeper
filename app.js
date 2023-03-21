@@ -17,6 +17,8 @@ p1Button.addEventListener('click',()=>{
         //same thing as ++
         if(p1Score === winningScore){
             isGameOver = true;
+            p1Display.classList.add('winner');
+            p2Display.classList.add('loser');
         }
         p1Display.textContent = p1Score
         //innerText and textContent or similar but remember, innerText only displays
@@ -31,6 +33,8 @@ p2Button.addEventListener('click',()=>{
         //same thing as ++
         if(p2Score === winningScore){
             isGameOver = true;
+            p2Display.classList.add('winner');
+            p1Display.classList.add('loser');
         }
         p2Display.textContent = p2Score
         //innerText and textContent or similar but remember, innerText only displays
@@ -40,16 +44,17 @@ p2Button.addEventListener('click',()=>{
 })
 
 const reset = ()=>{
-    // console.log('clicked reset btn')
-    if(!isGameOver || isGameOver === true){
-        p1Score = 0;
-        p2Score = 0;
-        p1Display.textContent = p1Score
-        p2Display.textContent = p2Score
-    }
+    p1Score = 0;
+    p2Score = 0;
+    p1Display.textContent = p1Score
+    p2Display.textContent = p2Score
     isGameOver = false;
+    p1Display.classList.remove('winner','loser');
+    p2Display.classList.remove('winner','loser');
 }
+
 resetButton.addEventListener('click', reset)
+//we reset when the event is triggered
 
 winningScoreSelect.addEventListener('change',function (){
     console.log('changed winningScoreSelect btn')
@@ -58,4 +63,5 @@ winningScoreSelect.addEventListener('change',function (){
     //bc the number is locked behind 'this.value' as a string, where 'this' is the 
     //'winningScoreSelect' object.
     reset();
+    //here we reset within the anonymous function.
 })
