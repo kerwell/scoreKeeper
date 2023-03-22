@@ -10,9 +10,25 @@ const player2 = {
 }
 const resetButton = document.querySelector('#resetBtn')
 const winningScoreSelect = document.querySelector('#playTo')
-
 let winningScore = 3;
 let isGameOver = false;
+
+const updateScores = (player, opponent)=>{
+    if(!isGameOver){
+        player.score += 1
+        //same thing as ++
+        if(player.score === winningScore){
+            isGameOver = true;
+            player.display.classList.add('has-text-success');
+            opponent.display.classList.add('has-text-danger');
+            player.button.disabled = true;
+            opponent.button.disabled = true;
+        }
+        player.display.textContent = player.score
+        //innerText and textContent or similar but remember, innerText only displays
+        //the visible text to the viewer, nothing hidden.
+    }
+}
 
 p1Button.addEventListener('click',()=>{
     console.log('clicked p1b')
