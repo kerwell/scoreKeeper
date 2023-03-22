@@ -30,41 +30,13 @@ const updateScores = (player, opponent)=>{
     }
 }
 
-p1Button.addEventListener('click',()=>{
-    console.log('clicked p1b')
-    if(!isGameOver){
-        p1Score += 1
-        //same thing as ++
-        if(p1Score === winningScore){
-            isGameOver = true;
-            p1Display.classList.add('has-text-success');
-            p2Display.classList.add('has-text-danger');
-            p1Button.disabled = true;
-            p2Button.disabled = true;
-        }
-        p1Display.textContent = p1Score
-        //innerText and textContent or similar but remember, innerText only displays
-        //the visible text to the viewer, nothing hidden.
-    }
-    
+player1.button.addEventListener('click',()=>{
+    updateScores(player1, player2)
+    //player1 is player and player2 is opponent
 })
-p2Button.addEventListener('click',()=>{
-    console.log('clicked p2b')
-    if(!isGameOver){
-        p2Score += 1
-        //same thing as ++
-        if(p2Score === winningScore){
-            isGameOver = true;
-            p2Display.classList.add('has-text-success');
-            p1Display.classList.add('has-text-danger');
-            p1Button.disabled = true;
-            p2Button.disabled = true;
-        }
-        p2Display.textContent = p2Score
-        //innerText and textContent or similar but remember, innerText only displays
-        //the visible text to the viewer, nothing hidden.
-    }
-    
+player2.button.addEventListener('click',()=>{
+    updateScores(player2, player1)
+    //player2 is player and player1 is opponent
 })
 
 const reset = ()=>{
