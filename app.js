@@ -40,22 +40,20 @@ player2.button.addEventListener('click',()=>{
 })
 
 const reset = ()=>{
-    p1Score = 0;
-    p2Score = 0;
-    p1Display.textContent = p1Score
-    p2Display.textContent = p2Score
-    isGameOver = false;
-    p1Display.classList.remove('has-text-success','has-text-danger');
-    p2Display.classList.remove('has-text-success','has-text-danger');
-    p1Button.disabled = false;
-    p2Button.disabled = false;
+    for(let player of [player1,player2]){
+        //made both players into an array to loop the changes with all players
+        player.score = 0
+        player.display.textContent = player.score
+        player.display.classList.remove('has-text-success','has-text-danger');
+        player.button.disabled = false
+        isGameOver = false
+    }
 }
 
 resetButton.addEventListener('click', reset)
 //we reset when the event is triggered
 
 winningScoreSelect.addEventListener('change',function (){
-    console.log('changed winningScoreSelect btn')
     winningScore = parseInt(this.value);
     //we need to use 'parseInt()' method to make a string into a number.
     //bc the number is locked behind 'this.value' as a string, where 'this' is the 
